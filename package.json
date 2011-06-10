@@ -1,0 +1,26 @@
+{
+  "name": "nerve",
+  "description": "Nerve blogging platform",
+  "url": "http://github.com/joehewitt/nerve",
+  "keywords": ["blog"],
+  "author": "Joe Hewitt <joe@joehewitt.com>",
+  "contributors": [],
+  "bin" : "./bin/nerve",
+  "dependencies": {
+      "async": "",
+      "datetime": "",
+      "express": "",
+      "flickr-reflection": "",
+      "jade": "",
+      "jsdom": "",
+      "markdom": "",
+      "step": "",
+      "stylus": "",
+      "underscore": "",
+      "vows": ">=0.5.4",
+  },
+  "version": "0.0.1",
+  "main": "./lib/nerve",
+  "directories": { "test": "./test" },
+  "engines": { "node": ">=0.4.0" }
+}

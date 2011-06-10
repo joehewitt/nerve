@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+
+var nerve = require('../lib/nerve');
+
+var blogPaths = process.argv.slice(2);
+nerve.run(blogPaths);
