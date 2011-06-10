@@ -17,7 +17,7 @@
       "step": "",
       "stylus": "",
       "underscore": "",
-      "vows": ">=0.5.4",
+      "vows": ">=0.5.4"
   },
   "version": "0.0.1",
   "main": "./lib/nerve",
