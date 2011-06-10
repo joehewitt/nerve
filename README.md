@@ -1,7 +1,7 @@
 nerve
 ========
 
-A blogging platform.
+A Node.js blogging platform.
 
 Installation
 ------------
