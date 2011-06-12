@@ -11,6 +11,7 @@
       "datetime": "",
       "express": "",
       "flickr-reflection": "",
+      "gzip": "",
       "jade": "",
       "jsdom": "",
       "markdom": "",
@@ -18,6 +19,7 @@
       "step": "",
       "stylus": "",
       "underscore": "",
+      "uglify-js": "",
       "vows": ">=0.5.4"
   },
   "version": "0.0.1",
