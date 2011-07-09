@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 
-var argv = require('optimist').argv;
-var nerve = require('../lib/nerve');
+var argv = require('optimist').argv,
+	path = require('path'),
+	nerve = require('../lib/nerve');
 
-nerve.run(argv._[0], argv.content, argv.config);
+// Allows you to import the package located in the current working directory
+require.paths.unshift(path.resolve('..'));
+
+nerve.run(argv);
