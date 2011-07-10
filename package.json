@@ -2,16 +2,21 @@
   "name": "nerve",
   "description": "Nerve blogging platform",
   "url": "http://github.com/joehewitt/nerve",
+  "repository": {
+      "type": "git",
+      "url" : "http://github.com/joehewitt/nerve.git"
+  },
   "keywords": ["blog"],
   "author": "Joe Hewitt <joe@joehewitt.com>",
   "contributors": [],
   "bin" : "./bin/nerve",
   "dependencies": {
+      "appjs": "",
       "async": "",
       "datetime": "",
+      "diskcache": ""
       "express": "",
       "flickr-reflection": "",
-      "gzip": "",
       "jsdom": "",
       "optimist": "",
       "step": "",
