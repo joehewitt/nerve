@@ -4,7 +4,4 @@ var argv = require('optimist').argv,
 	path = require('path'),
 	nerve = require('../lib/nerve');
 
-// Allows you to import the package located in the current working directory
-require.paths.unshift(path.resolve('..'));
-
 nerve.run(argv);
