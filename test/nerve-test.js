@@ -1,6 +1,9 @@
 var path = require('path'),
     assert = require('assert'),
-    vows = require('vows');
+    vows = require('vows'),
+    _ = require('underscore'),
+    datetime = require('datetime'),
+    appjs = require('appjs');
 
 require.paths.unshift(path.join(__dirname, '..', 'lib'));
 
@@ -8,25 +11,54 @@ var nerve = require('nerve');
 
 // *************************************************************************************************
 
+function createBlog(pattern) {
+    return function() {
+        var appPath = path.join(__dirname, 'blogs/a');
+        var contentPath = path.join(__dirname, pattern);
+        var blog = new nerve.Blog(appPath, contentPath);
+        blog.init('mac', {}, _.bind(function(err, app) {
+            if (err) { console.trace(err.stack); this.callback(err); return; }
+            this.callback(0, blog);
+        }, this));    
+    }
+}
+
+var blogTests = {
+    topic: function(blog) {
+        blog.getAllPosts(this.callback);
+    },
+
+    'of length 3': function(posts) {
+        assert.equal(posts.length, 3);            
+    },            
+
+    'with titles': function(posts) {
+        assert.equal(posts[0].title, 'Post Uno');
+        assert.equal(posts[1].title, 'Post Duo');
+        assert.equal(posts[2].title, 'Title');
+    },            
+
+    'with dates': function(posts) {
+        assert.equal(datetime.format(posts[0].date, '%Y/%m/%d'), '2011/08/03');
+        assert.equal(datetime.format(posts[1].date, '%Y/%m/%d'), '2011/08/02');
+        assert.equal(datetime.format(posts[2].date, '%Y/%m/%d'), '2011/08/01');
+    },
+       
+    'with group': function(err, posts, groupedPosts) {
+        assert.equal(groupedPosts.about[0].title, 'Me');
+    },            
+};
+
+// *************************************************************************************************
+
 vows.describe('nerve basics').addBatch({
-    'A blog': {
-        topic: new nerve.Blog(path.join(__dirname, 'blogs/a'), 'http://example.com'),
-
-        'has posts': {
-            topic: function(blog) {
-                blog.getAllPosts(this.callback);
-            },
-
-            'of length 3': function(posts) {
-                assert.equal(posts.length, 3);            
-            },            
-
-            'with titles': function(posts) {
-                assert.equal(posts[0].title, 'Title');
-                assert.equal(posts[1].title, 'Post Duo');
-                assert.equal(posts[2].title, 'Post Uno');
-            },            
-        }
-        
+    'A blog with wildcard content': {
+        topic: createBlog('blogs/*.md'),
+        'has posts': blogTests,
+    },     
+    'A blog with directory content': {
+        topic: createBlog('blogs/b'),
+        'has posts': blogTests,
     },     
 }).export(module);
+

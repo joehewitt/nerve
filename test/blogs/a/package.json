@@ -1,0 +1,19 @@
+{
+  "name": "a",
+  "main": "./server.js",
+  "app.js": {
+      "client": "./client.js"
+  },
+  "nerve": {
+    "title": "A",
+    "hostName": "*.foo.com",
+    "postsPerPage": 1,
+    "configs": {
+        "mac": {
+          "baseURL": "http://foo.com",
+          "logsPath": "/var/tmp/nerve",
+          "cachePath": "/var/tmp/nerve"
+        }
+    }    
+  }
+}
