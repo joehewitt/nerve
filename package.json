@@ -11,8 +11,8 @@
   "contributors": [],
   "bin" : "./bin/nerve",
   "dependencies": {
-      "apijs": "",
-      "appjs": "",
+      "api.js": "",
+      "app.js": "",
       "async": "",
       "bcrypt": "",
       "dandy": "",
