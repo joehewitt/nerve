@@ -19,6 +19,8 @@
       "datetime": "",
       "diskcache": "",
       "express": "",
+      "express-cache": "",
+      "express-rewrite": "",
       "flickr-reflection": "",
       "glob": "",
       "jsdom": "",
