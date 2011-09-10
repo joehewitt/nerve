@@ -12,7 +12,6 @@
   "bin" : "./bin/nerve",
   "dependencies": {
       "api.js": "",
-      "app.js": "",
       "async": "",
       "bcrypt": "",
       "dandy": "",
@@ -25,9 +24,7 @@
       "glob": "",
       "jsdom": "",
       "markdom": "",
-      "mkdir": "",
       "optimist": "",
-      "step": "",
       "underscore": "",
       "watch": "",
       "vows": ">=0.5.4"
