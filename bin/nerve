@@ -1,6 +1,0 @@
-#!/usr/bin/env node
-
-var argv = require('optimist').argv,
-	nerve = require('../lib/nerve');
-
-nerve.run(argv);

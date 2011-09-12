@@ -1,6 +1,7 @@
 {
   "name": "nerve",
   "description": "Nerve blogging platform",
+  "version": "0.0.1",
   "homepage": "http://github.com/joehewitt/nerve",
   "repository": {
       "type": "git",
@@ -9,7 +10,6 @@
   "keywords": ["blog"],
   "author": "Joe Hewitt <joe@joehewitt.com>",
   "contributors": [],
-  "bin" : "./bin/nerve",
   "dependencies": {
       "api.js": "",
       "async": "",
@@ -17,9 +17,7 @@
       "dandy": "",
       "datetime": "",
       "diskcache": "",
-      "express": "",
       "express-cache": "",
-      "express-rewrite": "",
       "flickr-reflection": "",
       "glob": "",
       "jsdom": "",
@@ -29,7 +27,6 @@
       "watch": "",
       "vows": ">=0.5.4"
   },
-  "version": "0.0.1",
   "main": "./lib/nerve",
   "directories": { "test": "./test" },
   "engines": { "node": ">=0.4.0" }
