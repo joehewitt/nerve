@@ -14,17 +14,12 @@ function createBlog(pattern) {
     return function() {
         var appPath = path.join(__dirname, 'blogs/a');
         var contentPath = path.join(__dirname, pattern);
-        // appPath, contentPath
         var conf = {
             'title': 'Test Blog',
             'host': 'testhost.example.net',
             'content': pattern
         };
         var blog = new nerve.Blog(conf);
-        // blog.init('mac', {}, _.bind(function(err, app) {
-        //     if (err) { console.trace(err.stack); this.callback(err); return; }
-        //     this.callback(0, blog);
-        // }, this));    
         return blog;
     }
 }
@@ -34,7 +29,6 @@ var blogTests = {
         blog.reload( _.bind(function() {
             blog.getAllPosts(this.callback);
         }, this) );
-        // blog.getAllPosts(this.callback);
     },
 
     'of length 3': function(posts) {
