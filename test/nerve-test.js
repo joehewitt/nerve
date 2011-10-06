@@ -2,8 +2,7 @@ var path = require('path'),
     assert = require('assert'),
     vows = require('vows'),
     _ = require('underscore'),
-    datetime = require('datetime'),
-    appjs = require('appjs');
+    datetime = require('datetime');
 
 require.paths.unshift(path.join(__dirname, '..', 'lib'));
 
@@ -15,17 +14,21 @@ function createBlog(pattern) {
     return function() {
         var appPath = path.join(__dirname, 'blogs/a');
         var contentPath = path.join(__dirname, pattern);
-        var blog = new nerve.Blog(appPath, contentPath);
-        blog.init('mac', {}, _.bind(function(err, app) {
-            if (err) { console.trace(err.stack); this.callback(err); return; }
-            this.callback(0, blog);
-        }, this));    
+        var conf = {
+            'title': 'Test Blog',
+            'host': 'testhost.example.net',
+            'content': pattern
+        };
+        var blog = new nerve.Blog(conf);
+        return blog;
     }
 }
 
 var blogTests = {
     topic: function(blog) {
-        blog.getAllPosts(this.callback);
+        blog.reload( _.bind(function() {
+            blog.getAllPosts(this.callback);
+        }, this) );
     },
 
     'of length 3': function(posts) {
@@ -44,20 +47,20 @@ var blogTests = {
         assert.equal(datetime.format(posts[2].date, '%Y/%m/%d'), '2011/08/01');
     },
        
-    'with group': function(err, posts, groupedPosts) {
-        assert.equal(groupedPosts.about[0].title, 'Me');
-    },            
+    // 'with group': function(err, posts, groupedPosts) {
+    //     assert.equal(groupedPosts.about[0].title, 'Me');
+    // },            
 };
 
 // *************************************************************************************************
 
 vows.describe('nerve basics').addBatch({
     'A blog with wildcard content': {
-        topic: createBlog('blogs/*.md'),
+        topic: createBlog('test/blogs/*.md'),
         'has posts': blogTests,
-    },     
-    'A blog with directory content': {
-        topic: createBlog('blogs/b'),
+    } 
+    , 'A blog with directory content': {
+        topic: createBlog('test/blogs/b'),
         'has posts': blogTests,
     },     
 }).export(module);
