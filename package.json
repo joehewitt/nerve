@@ -1,33 +1,40 @@
 {
   "name": "nerve",
   "description": "Nerve blogging platform",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "http://github.com/joehewitt/nerve",
   "repository": {
-      "type": "git",
-      "url" : "http://github.com/joehewitt/nerve.git"
+    "type": "git",
+    "url": "git://github.com/joehewitt/nerve.git"
   },
-  "keywords": ["blog"],
+  "keywords": [
+    "blog"
+  ],
   "author": "Joe Hewitt <joe@joehewitt.com>",
   "contributors": [],
   "dependencies": {
-      "api.js": "",
-      "async": "",
-      "bcrypt": "",
-      "dandy": "",
-      "datetime": "",
-      "diskcache": "",
-      "express-cache": "",
-      "flickr-reflection": "",
-      "glob": "",
-      "jsdom": "",
-      "markdom": "",
-      "optimist": "",
-      "underscore": "",
-      "watch": "",
-      "vows": ">=0.5.4"
+    "api.js": "",
+    "async": "",
+    "bcrypt": "",
+    "dandy": "",
+    "datetime": "",
+    "diskcache": "",
+    "express-cache": "",
+    "flickr-reflection": "",
+    "glob": "",
+    "jsdom": "",
+    "markdom": "",
+    "optimist": "",
+    "underscore": "",
+    "watch": "",
+    "vows": ">=0.5.4"
   },
   "main": "./lib/nerve",
-  "directories": { "test": "./test" },
-  "engines": { "node": ">=0.4.0" }
+  "directories": {
+    "test": "./test"
+  },
+  "engines": {
+    "node": ">=0.4.0"
+  },
+  "devDependencies": {}
 }
