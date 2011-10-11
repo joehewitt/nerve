@@ -2,8 +2,7 @@ var path = require('path'),
     assert = require('assert'),
     vows = require('vows'),
     _ = require('underscore'),
-    datetime = require('datetime'),
-    appjs = require('appjs');
+    datetime = require('datetime');
 
 require.paths.unshift(path.join(__dirname, '..', 'lib'));
 
@@ -15,9 +14,11 @@ function createBlog(pattern) {
     return function() {
         var appPath = path.join(__dirname, 'blogs/a');
         var contentPath = path.join(__dirname, pattern);
-        var blog = new nerve.Blog(appPath, contentPath);
-        blog.init('mac', {}, _.bind(function(err, app) {
-            if (err) { console.trace(err.stack); this.callback(err); return; }
+        var blog = new nerve.Blog({
+            app: appPath,
+            content: contentPath
+        }, _.bind(function(err, app) {
+            // if (err) { console.trace(err.stack); this.callback(err); return; }
             this.callback(0, blog);
         }, this));    
     }
@@ -44,8 +45,8 @@ var blogTests = {
         assert.equal(datetime.format(posts[2].date, '%Y/%m/%d'), '2011/08/01');
     },
        
-    'with group': function(err, posts, groupedPosts) {
-        assert.equal(groupedPosts.about[0].title, 'Me');
+    'with group': function(err, posts) {
+        assert.equal(posts[0].blog.groupedPosts.about[0].title, 'Me');
     },            
 };
 
@@ -61,4 +62,3 @@ vows.describe('nerve basics').addBatch({
         'has posts': blogTests,
     },     
 }).export(module);
-
