@@ -22,10 +22,12 @@
     "express-cache": "",
     "flickr-reflection": "",
     "glob": "",
+    "imagemagick": "",
     "jsdom": "",
     "markdom": "",
     "optimist": "",
     "underscore": "",
+    "temp": "",
     "watch": "",
     "vows": ">=0.5.4"
   },
