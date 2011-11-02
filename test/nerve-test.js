@@ -18,7 +18,7 @@ function createBlog(pattern) {
             app: appPath,
             content: contentPath
         }, _.bind(function(err, app) {
-            // if (err) { console.trace(err.stack); this.callback(err); return; }
+            if (err) { console.trace(err.stack); this.callback(err); return; }
             this.callback(0, blog);
         }, this));    
     }
