@@ -57,19 +57,85 @@ var contentTests = {
         blog.getAllPosts(true, this.callback);
     },
 
-    'test1': function(posts) {
+    'basic paragraph': function(posts) {
         assert.equal(posts[0].body, '<p>This is a post.</p>');
     },
 
-    'test2': function(posts) {
+    'image': function(posts) {
         assert.equal(posts[1].body,
             '<p><img src="http://example.com/content/images/salvia.jpg/200x100" title="The title" width="200" height="100"></p>'
         );
     },
 
-    'test3': function(posts) {
-        assert.equal(posts[1].body,
-            '<p><img src="http://example.com/content/images/salvia.jpg/200x100" title="The title" width="200" height="100"></p>'
+    'ignore style in the middle': function(posts) {
+        assert.equal(posts[2].body,
+            '<p class="styled post">This is text. (.ignore.this) This is more text.</p>'
+        );
+    },
+
+    'parentheses that are not a style': function(posts) {
+        assert.equal(posts[3].body,
+            '<p>This is a line (and this is not styling)</p>'
+        );
+    },
+
+    'list item': function(posts) {
+        assert.equal(posts[4].body,
+            '<ul><li class="styled">This is a list item</li></ul>'
+        );
+    },
+
+    'blockquote': function(posts) {
+        assert.equal(posts[5].body,
+            '<blockquote><p class="styled">This is a blockquote\nand it is</p></blockquote>'
+        );
+    },
+
+    'code block': function(posts) {
+        assert.equal(posts[6].body,
+            '<pre class="styled"><code>This is a code block\nand it is</code></pre>'
+        );
+    },
+
+    'simple span': function(posts) {
+        assert.equal(posts[7].body,
+            '<p>This is an <span class="styled">example of how</span> spans can be styled.</p>'
+        );
+    },
+
+    'complex span': function(posts) {
+        assert.equal(posts[8].body,
+            '<p>This is an <span class="styled">example of complex content <img src="http://foo.com/foo.jpg"></span> inside a styled span.</p>'
+        );
+    },
+
+    'span with title': function(posts) {
+        assert.equal(posts[9].body,
+            '<p>This is a <span class="styled" title="the title">span with a title</span>.</p>'
+        );
+    },
+
+    'styled block': function(posts) {
+        assert.equal(posts[10].body,
+            '<p>Monkey see.</p><div class="section"><p>One banana.</p><p>Two bananas.</p></div><p>Monkey do.</p>'
+        );
+    },
+
+    'nested styled block': function(posts) {
+        assert.equal(posts[11].body,
+            '<p>Monkey see.</p><div class="section"><p>One banana.</p><div class="nested"><p>1.5 banana</p></div><p>Two bananas.</p></div><p>Monkey do.</p>'
+        );
+    },
+
+    'figure names': function(posts) {
+        assert.equal(posts[12].body,
+            '<p class="figure" require="example" figure="example">Simple figure.</p><p class="figure" require="example.com" figure="example.com">Figure with dot.</p><p class="figure" require="example.com" figure="bar">Figure with slash.</p><p class="foo bar figure" require="example.com" figure="example.com">Figure and class names.</p>'
+        );
+    },
+
+    'multi-line paragraph': function(posts) {
+        assert.equal(posts[13].body,
+            '<p class="line2">Line 1 (.line1)\nLine 2</p>'
         );
     },
 };
