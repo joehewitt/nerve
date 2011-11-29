@@ -13,6 +13,7 @@
   "author": "Joe Hewitt <joe@joehewitt.com>",
   "contributors": [],
   "dependencies": {
+    "app.js": "",
     "api.js": "",
     "async": "",
     "bcrypt": "",

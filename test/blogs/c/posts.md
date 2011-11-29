@@ -97,16 +97,25 @@ Monkey do.
 Post 12 [11/1/11]
 ==========
 
-Simple figure. (@example)
+Simple figure. (@fig)
+
+Figure with slash. (@fig/bar)
 
 Figure with dot. (@example.com)
 
-Figure with slash. (@example.com/bar)
+Figure with dot and slash. (@example.com/bar)
 
 Figure and class names. (@example.com .foo.bar)
+
+Figure not found. (@gone)
 
 Post 13 [11/1/11]
 ==========
 
 Line 1 (.line1)
 Line 2 (.line2)
+
+Post 14 (@foofy) [11/1/11]
+==========
+
+..

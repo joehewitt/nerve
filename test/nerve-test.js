@@ -2,7 +2,8 @@ var path = require('path'),
     assert = require('assert'),
     vows = require('vows'),
     _ = require('underscore'),
-    datetime = require('datetime');
+    datetime = require('datetime'),
+    appjs = require('app.js');
 
 require.paths.unshift(path.join(__dirname, '..', 'lib'));
 
@@ -12,16 +13,30 @@ var nerve = require('nerve');
 
 function createBlog(pattern) {
     return function() {
-        var appPath = path.join(__dirname, 'blogs/a');
-        var contentPath = path.join(__dirname, pattern);
-        var blog = new nerve.Blog({
-            app: appPath,
-            content: contentPath,
-            host: 'example.com',
-        }, _.bind(function(err, app) {
+        var blogsPath = path.join(__dirname, 'blogs');
+        var appPath = path.join(blogsPath, 'a');
+        var clientPath = path.join(appPath, 'client.js');
+        appjs.searchScript(appPath, _.bind(function(err, result) {
             if (err) { console.trace(err.stack); this.callback(err); return; }
-            this.callback(0, blog);
-        }, this));    
+
+            var app = new appjs.App({
+                title: "Test",
+                client: clientPath
+            });
+
+            app.paths.push(blogsPath);
+
+            var contentPath = path.join(__dirname, pattern);
+            var blog = new nerve.Blog({
+                content: contentPath,
+                host: 'example.com',
+            });
+
+            blog.useApp(app, _.bind(function(err) {
+                if (err) { console.trace(err.stack); this.callback(err); return; }
+                this.callback(0, blog);
+            }, this));
+        }, this));
     }
 }
 
@@ -129,7 +144,7 @@ var contentTests = {
 
     'figure names': function(posts) {
         assert.equal(posts[12].body,
-            '<p class="figure" require="example" figure="example">Simple figure.</p><p class="figure" require="example.com" figure="example.com">Figure with dot.</p><p class="figure" require="example.com" figure="bar">Figure with slash.</p><p class="foo bar figure" require="example.com" figure="example.com">Figure and class names.</p>'
+            '<p class="figure" require="a/fig" figure="fig">Simple figure.</p><p class="figure" require="a/fig" figure="bar">Figure with slash.</p><p class="figure" require="example.com" figure="example.com">Figure with dot.</p><p class="figure" require="example.com" figure="bar">Figure with dot and slash.</p><p class="foo bar figure" require="example.com" figure="example.com">Figure and class names.</p><p class="figure figureNotFound">Figure not found.</p>'
         );
     },
 
@@ -137,6 +152,10 @@ var contentTests = {
         assert.equal(posts[13].body,
             '<p class="line2">Line 1 (.line1)\nLine 2</p>'
         );
+    },
+
+    'css import': function(posts) {
+        assert.deepEqual(posts[14].stylesheets, ['/app.js/static/a/foofy.css']);
     },
 };
 
