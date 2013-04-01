@@ -1,7 +1,7 @@
 {
   "name": "nerve",
   "description": "Nerve blogging platform",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "homepage": "http://github.com/joehewitt/nerve",
   "repository": {
     "type": "git",
